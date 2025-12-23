@@ -1,21 +1,21 @@
 @import 'tailwindcss';
 
 @theme {
-	--color-pxl: #eca749;
-	--color-pxl-light: #eeeeee;
-	--color-pxl-dark: #090909;
+  --color-pxl: #eca749;
+  --color-pxl-light: #eeeeee;
+  --color-pxl-dark: #090909;
 
-	--font-pxl: 'Departure Mono', monospace;
-	--default-font-family: var(--font-pxl);
+  --font-pxl: 'Departure Mono', monospace;
+  --default-font-family: var(--font-pxl);
 }
 
 @layer base {
-	@font-face {
-		font-family: 'Departure Mono';
-		src:
-			url('fonts/DepartureMono-Regular.woff2') format('woff2'),
-			url('fonts/DepartureMono-Regular.woff') format('woff');
-		font-weight: 400;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: 'Departure Mono';
+    src:
+      url('fonts/DepartureMono-Regular.woff2') format('woff2'),
+      url('fonts/DepartureMono-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
 }
