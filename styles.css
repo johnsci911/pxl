@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-pxl: #eca749;
+	--color-pxl-light: #eeeeee;
+	--color-pxl-dark: #090909;
+}
