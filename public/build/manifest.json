@@ -1,12 +1,20 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DMRBjSig.css",
+    "file": "assets/app-D4yiRmhl.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
     "names": [
       "app.css"
     ]
+  },
+  "resources/fonts/DepartureMono-Regular.woff": {
+    "file": "assets/DepartureMono-Regular-DBuWTdvd.woff",
+    "src": "resources/fonts/DepartureMono-Regular.woff"
+  },
+  "resources/fonts/DepartureMono-Regular.woff2": {
+    "file": "assets/DepartureMono-Regular-2BZob_Zz.woff2",
+    "src": "resources/fonts/DepartureMono-Regular.woff2"
   },
   "resources/js/app.js": {
     "file": "assets/app-CAiCLEjY.js",

@@ -27,7 +27,7 @@ Route::get('/feed', function () {
         ]
     ]));
 
-    return view('feed', compact('postForm', 'feedItems'));
+    return view('feed', compact('feedItems'));
 });
 
 Route::get('/profile', function () {
