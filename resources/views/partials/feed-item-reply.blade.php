@@ -1,13 +1,20 @@
-<li class="flex items-start gap-4 not-first:pt-2.5">
-<a href="/profile" class="shrink-0">
-  <img src="{{ $item->profile->avatar }}" alt="Avatar for {{ $item->profile->displayName }}" class="size-10 object-cover" />
-</a>
-<div class="grow pt-1.5">
-  <div class="border-pxl-light/10 border-b pb-5">
-    <!-- User meta -->
+<li class="group/li relative flex items-start gap-4 pt-4">
+  <!-- Line-through -->
+  <div aria-hidden="true" class="bg-pxl-light/10 absolute top-0 left-5 h-full w-px group-last/li:h-4">
+  </div>
+  <a href="/profile" class="isolate shrink-0">
+    <img
+      src="{{ $item->profile->avatar }}"
+      alt="Avatar for {{ $item->profile->displayName }}"
+      class="size-10 object-cover"
+    />
+  </a>
+  <div class="border-pxl-light/10 grow border-b pt-1.5 pb-5">
     <div class="flex items-center justify-between gap-4">
       <div class="flex items-center gap-2.5">
-        <p><a class="hover:underline" href="/profile">{{ $item->profile->displayName }}</a></p>
+        <p>
+          <a class="hover:underline" href="/profile">{{ $item->profile->displayName }}</a>
+        </p>
         <p class="text-pxl-light/40 text-xs">{{ $item->postedDateTime }}</p>
         <p>
           <a class="text-pxl-light/40 hover:text-pxl-light/60 text-xs" href="/profile">{{ $item->profile->handle }}</a>
@@ -19,8 +26,7 @@
         <span class="bg-pxl-light/40 group-hover:bg-pxl-light/60 size-1"></span>
       </button>
     </div>
-    <!-- Post content -->
-    <div class="[&_a]:text-pxl mt-4 flex flex-col gap-3 text-sm [&_a]:hover:underline">
+    <div class="mt-4 flex flex-col gap-3 text-sm">
       {!! $item->content !!}
     </div>
     <!-- Action buttons -->
@@ -161,28 +167,5 @@
       </div>
     </div>
   </div>
-  <!-- Threaded replies -->
-  <ol>
-    <!-- Reply form-->
-    <div class="border-pxl-light/10 bg-pxl-light/3 mt-8 flex items-start gap-4 border-t p-4">
-      <a href="/profile" class="shrink-0">
-        <img src="{{ $item->profile->avatar }}" alt="Avatar for {{ $item->profile->displayName }}" class="size-10 object-cover" />
-      </a>
-      @include('partials.post-form', [
-        'labelText' => 'Reply body',
-        'fieldName' => 'reply',
-        'placeholder' => "Reply to {$item->profile->displayName}'s post",
-        'rows' => 5,
-      ])
-    </div>
-
-    <!-- Reply -->
-    @foreach($item->replies as $reply)
-      @include('partials.feed-item-reply', ['item' => $reply])
-    @endforeach
-
-    <!-- More Replies -->
-  </ol>
-</div>
 </li>
 
