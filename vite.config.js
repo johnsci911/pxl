@@ -11,6 +11,9 @@ export default defineConfig({
         tailwindcss(),
     ],
     server: {
+        hmr: {
+            host: 'pxl.test',
+        },
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },

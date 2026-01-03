@@ -45,7 +45,7 @@
       <hr class="border-pxl-light/10 my-4">
 
       <!-- White noise -->
-      <div class="bg-[url(/images/white-noise.gif)] h-20"></div>
+      <div class="bg-[url(/resources/images/white-noise.gif)] h-20"></div>
     </footer>
   </main>
 
