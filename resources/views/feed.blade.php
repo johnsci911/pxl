@@ -24,11 +24,7 @@
         <img src="/images/adrian.png" alt="Avatar for Adrian" class="size-10 object-cover" />
       </a>
       <!-- Form -->
-      @include('partials.post-form', [
-        'labelText' => 'Post body',
-        'fieldName' => 'post',
-        'placeholder' => "What's up _adrian?",
-      ])
+      @include('partials.post-form', $postForm)
     </div>
 
     <!-- Feed -->
@@ -207,12 +203,7 @@
               <a href="/profile" class="shrink-0">
                 <img src="/images/adrian.png" alt="Avatar for Adrian" class="size-10 object-cover" />
               </a>
-              @include('partials.post-form', [
-                'labelText' => 'Reply',
-                'fieldName' => 'reply',
-                'placeholder' => "Reply to _adrian's post?",
-                'rows' => 5
-              ])
+              @include('partials.post-form', $replyForm)
             </div>
 
             <!-- Reply -->
