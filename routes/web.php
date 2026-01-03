@@ -7,22 +7,49 @@ Route::get('/', function () {
 });
 
 Route::get('/feed', function () {
-    $postForm = [
-        'labelText' => 'Post body',
-        'fieldName' => 'post',
-        'placeholder' => 'What _adrian?',
-    ];
+    $feedItems = json_decode(json_encode([
+        [
+            'content' => <<<str
+              <p>
+                I made this! <a href="#">#myartwork</a> <a href="#">#pxl</a>
+              </p>
+              <img src="/images/simon-chilling.png" alt="" />
+            str,
+            'likeCount' => 23,
+            'replyCount' => 45,
+            'repostCount' => 151,
+            'postedDateTime' => '3h',
+            'profile' => [
+                'avatar' => '/images/michael.png',
+                'displayName' => 'Michael',
+                'handle' => '@mmich_jj',
+            ],
+        ]
+    ]));
 
-    $replyForm = [
-        'labelText' => 'Reply',
-        'fieldName' => 'reply',
-        'placeholder' => 'Reply to _adrian\'s post?',
-        'rows' => 5
-    ];
-
-    return view('feed', compact('postForm', 'replyForm'));
+    return view('feed', compact('postForm', 'feedItems'));
 });
 
 Route::get('/profile', function () {
-    return view('profile');
+    $feedItems = json_decode(json_encode([
+        [
+            'content' => <<<str
+              <p>
+                I made this! <a href="#">#myartwork</a> <a href="#">#pxl</a>
+              </p>
+              <img src="/images/simon-chilling.png" alt="" />
+            str,
+            'likeCount' => 23,
+            'replyCount' => 45,
+            'repostCount' => 151,
+            'postedDateTime' => '3h',
+            'profile' => [
+                'avatar' => '/images/michael.png',
+                'displayName' => 'Michael',
+                'handle' => '@mmich_jj',
+            ],
+        ]
+    ]));
+
+    return view('profile', compact('feedItems'));
 });
