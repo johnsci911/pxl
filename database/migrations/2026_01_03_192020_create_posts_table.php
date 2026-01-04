@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_id')->constrained()->onDelete('cascade');
+            $table->foreignId('profile_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->foreignId('parent_id')
                 ->nullable()
                 ->constrained('posts')
@@ -27,6 +29,8 @@ return new class extends Migration
 
             $table->index('parent_id');
             $table->index(['profile_id', 'created_at']);
+
+            $table->unique(['profile_id', 'repost_of_id'], 'unique_profile_repost');
         });
     }
 
