@@ -1,5 +1,5 @@
 <li class="flex items-start gap-4 not-first:pt-2.5">
-  <a href="/profile" class="shrink-0">
+  <a href="{{ route('profiles.show', $post->profile) }}" class="shrink-0">
     <img
       src="{{ $post->profile->avatar_url }}"
       alt="Avatar for {{ $post->profile->display_name }}"
@@ -11,10 +11,10 @@
       <!-- User meta -->
       <div class="flex items-center justify-between gap-4">
         <div class="flex items-center gap-2.5">
-          <p><a class="hover:underline" href="/{{ $post->profile->handle }}">{{ $post->profile->display_name }}</a></p></a></p>
+          <p><a class="hover:underline" href="{{ route('profiles.show', $post->profile) }}">{{ $post->profile->display_name }}</a></p></a></p>
           <p class="text-pxl-light/40 text-xs">{{ $post->created_at }}</p>
           <p>
-            <a class="text-pxl-light/40 hover:text-pxl-light/60 text-xs" href="/{{ $post->profile->handle }}">{{ $post->profile->handle }}</a>
+            <a class="text-pxl-light/40 hover:text-pxl-light/60 text-xs" href="{{ route('profiles.show', $post->profile) }}">{{ $post->profile->handle }}</a>
           </p>
         </div>
         <button class="group flex gap-[3px] py-2" aria-label="Post options">
