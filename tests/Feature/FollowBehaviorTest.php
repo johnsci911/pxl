@@ -19,7 +19,7 @@ test('profile can follow another profile', function () {
 
     $follow = Follow::createFollow($profile1, $profile2);
 
-    expect($profile1->following->contains($profile2))->toBeTrue();
+    expect($profile1->followings->contains($profile2))->toBeTrue();
     expect($profile2->followers->contains($profile1))->toBeTrue();
     expect($follow->follower->id)->toEqual($profile1->id);
     expect($follow->following->id)->toEqual($profile2->id);
@@ -32,7 +32,7 @@ test('profile can unfollow profile', function () {
     $follow = Follow::createFollow($profile1, $profile2);
     $success = Follow::removeFollow($profile1, $profile2);
 
-    expect($profile1->following->contains($profile2))->toBeFalse();
+    expect($profile1->followings->contains($profile2))->toBeFalse();
     expect($profile2->followers->contains($profile1))->toBeFalse();
     expect($success)->toBeTrue();
     expect($follow->fresh())->toBeNull();
