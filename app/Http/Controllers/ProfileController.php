@@ -41,12 +41,14 @@ class ProfileController extends Controller
                     ->withCount(['likes', 'reposts', 'replies'])
                     ->with([
                         'profile', 'replies' => fn($q) => $q
+                            ->withCount(['likes', 'reposts', 'replies'])
                             ->with('profile')
                             ->oldest()
                     ]),
                 'repostOf.profile',
                 'parent.profile',
                 'replies' => fn($q) => $q
+                    ->withCount(['likes', 'reposts', 'replies'])
                     ->with('profile')
                     ->oldest()
             ])

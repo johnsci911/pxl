@@ -12,7 +12,7 @@
       <div class="flex items-center justify-between gap-4">
         <div class="flex items-center gap-2.5">
           <p><a class="hover:underline" href="{{ route('profiles.show', $post->profile) }}">{{ $post->profile->display_name }}</a></p></a></p>
-          <p class="text-pxl-light/40 text-xs">{{ $post->created_at }}</p>
+          <p class="text-pxl-light/40 text-xs"><a href="{{ route('posts.show', [$post->profile, $post]) }}">{{ $post->created_at }}</a></p>
           <p>
             <a class="text-pxl-light/40 hover:text-pxl-light/60 text-xs" href="{{ route('profiles.show', $post->profile) }}">{{ $post->profile->handle }}</a>
           </p>
@@ -25,15 +25,16 @@
       </div>
       <!-- Post content -->
       <div class="[&_a]:text-pxl mt-4 flex flex-col gap-3 text-sm [&_a]:hover:underline">
-        {!! $post->content !!}
-
+          {!! $post->content !!}
         @if ($post->isRepost() && $post->content != null)
           <ul>
-            <x-post
-              :post="$post->repostOf"
-              :show-engagement="false"
-              :show-replies="true"
-            />
+            <div class="border-pxl-light/10 border-t pt-5">
+              <x-post
+                :post="$post->repostOf"
+                :show-engagement="false"
+                :show-replies="true"
+              />
+            </div>
           </ul>
         @endif
       </div>
@@ -178,11 +179,15 @@
       @endif
     </div>
 
-    @if($showReplies && $post->relationLoaded('replies'))
+    @if($showReplies)
       <ol>
         <!-- Reply -->
         @foreach($post->replies as $reply)
-            <x-reply :post="$reply" :show-engagement="false" :show-replies="true" />
+          <x-post
+            :post="$reply"
+            :show-engagement="$showEngagement"
+            :show-replies="$showReplies"
+          />
         @endforeach
         <!-- More Replies -->
       </ol>

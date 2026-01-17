@@ -23,7 +23,10 @@
       <!-- Feed item -->
       @foreach ($posts as $item)
         <ul>
-          <x-reply :post="$item->isRepost() && $item->content == null ? $item->repostOf : $item" />
+          <x-post
+            :post="$item->isRepost() && $item->content == null ? $item->repostOf : $item"
+            :show-engagement="true"
+          />
         </ul>
       @endforeach
     </ol>
