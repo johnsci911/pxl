@@ -37,11 +37,16 @@ class ProfileController extends Controller
             )
             ->with([
                 'profile',
-                'repostOf' => fn($q) => $q->withCount(['likes', 'reposts', 'replies']),
+                'repostOf' => fn($q) => $q
+                    ->withCount(['likes', 'reposts', 'replies'])
+                    ->with([
+                        'profile', 'replies' => fn($q) => $q
+                            ->with('profile')
+                            ->oldest()
+                    ]),
                 'repostOf.profile',
                 'parent.profile',
                 'replies' => fn($q) => $q
-                    ->whereBelongsTo($profile, 'profile')
                     ->with('profile')
                     ->oldest()
             ])

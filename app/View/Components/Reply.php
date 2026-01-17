@@ -10,13 +10,13 @@ use Illuminate\View\Component;
 class Reply extends Component
 {
     public Post $post;
-    public bool $showEngagement = false;
-    public bool $showReplies = true;
+    public bool $showEngagement = true;
+    public bool $showReplies = false;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(Post $post, bool $showEngagement = false, bool $showReplies = true)
+    public function __construct(Post $post, bool $showEngagement = true, bool $showReplies = false)
     {
         $this->post = $post;
         $this->showEngagement = $showEngagement;
