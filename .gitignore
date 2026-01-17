@@ -1,6 +1,7 @@
 node_modules/
 vendor/
 storage/framework/
+public/hot
 .DS_Store
 dist/
 coverage/

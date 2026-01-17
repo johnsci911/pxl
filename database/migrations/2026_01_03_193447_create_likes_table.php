@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['profile', 'post_id']);
+            $table->unique(['profile_id', 'post_id']);
 
             $table->index(['post_id', 'created_at']);
         });
