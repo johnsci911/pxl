@@ -1,8 +1,8 @@
 <li class="flex items-start gap-4 not-first:pt-2.5">
   <a href="/profile" class="shrink-0">
     <img
-      src="{{ $item->profile->avatar_url }}"
-      alt="Avatar for {{ $item->profile->display_name }}"
+      src="{{ $post->profile->avatar_url }}"
+      alt="Avatar for {{ $post->profile->display_name }}"
       class="size-10 object-cover"
     />
   </a>
@@ -11,10 +11,10 @@
       <!-- User meta -->
       <div class="flex items-center justify-between gap-4">
         <div class="flex items-center gap-2.5">
-          <p><a class="hover:underline" href="{{ $item->profile->handle }}">{{ $item->profile->display_name }}</a></p></a></p>
-          <p class="text-pxl-light/40 text-xs">{{ $item->created_at }}</p>
+          <p><a class="hover:underline" href="/{{ $post->profile->handle }}">{{ $post->profile->display_name }}</a></p></a></p>
+          <p class="text-pxl-light/40 text-xs">{{ $post->created_at }}</p>
           <p>
-            <a class="text-pxl-light/40 hover:text-pxl-light/60 text-xs" href="{{ $item->profile->handle }}">{{ $item->profile->handle }}</a>
+            <a class="text-pxl-light/40 hover:text-pxl-light/60 text-xs" href="/{{ $post->profile->handle }}">{{ $post->profile->handle }}</a>
           </p>
         </div>
         <button class="group flex gap-[3px] py-2" aria-label="Post options">
@@ -25,11 +25,14 @@
       </div>
       <!-- Post content -->
       <div class="[&_a]:text-pxl mt-4 flex flex-col gap-3 text-sm [&_a]:hover:underline">
-        {!! $item->content !!}
+        {!! $post->content !!}
 
-        @if ($item->isRepost() && $item->content != null)
+        @if ($post->isRepost() && $post->content != null)
           <ul>
-            @include('partials.profile.post', ['item' => $item->repostOf])
+            <x-post
+              :post="$post->repostOf"
+              :show-engagement="false"
+            />
           </ul>
         @endif
       </div>
@@ -56,7 +59,7 @@
                 </defs>
               </svg>
             </button>
-            <span class="text-sm">{{ $item->likes_count }}</span>
+            <span class="text-sm">{{ $post->likes_count }}</span>
           </div>
           <!-- Comment -->
           <div class="flex items-center gap-1">
@@ -80,7 +83,7 @@
                 </defs>
               </svg>
             </button>
-            <span class="text-sm">{{ $item->replies_count }}</span>
+            <span class="text-sm">{{ $post->replies_count }}</span>
           </div>
           <!-- Re-post -->
           <div class="flex items-center gap-1">
@@ -112,7 +115,7 @@
                   d="M15.714 5.286h-1.428v1.429h1.428V5.286Zm-1.428 0h-1.428v1.429h1.428V5.286Zm-1.43 0h-1.428v1.429h1.428V5.286Z" />
               </svg>
             </button>
-            <span class="text-sm">{{ $item->reposts_count }} repost</span>
+            <span class="text-sm">{{ $post->reposts_count }}</span>
           </div>
         </div>
         <div class="flex items-center gap-3">
@@ -171,5 +174,15 @@
         </div>
       </div>
     </div>
+
+    @if($showReplies)
+      <ol>
+        <!-- Reply -->
+        @foreach($post->replies as $reply)
+            <x-reply :post="$reply" />
+        @endforeach
+        <!-- More Replies -->
+      </ol>
+    @endif
   </div>
 </li>

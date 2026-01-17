@@ -66,9 +66,11 @@
     <ol class="mt-4 border-pxl-light/10 pt-4 border-t">
       <!-- Feed item -->
       @foreach ($posts as $item)
-        <ul>
-          <x-reply :post="$item->isRepost() && $item->content == null ? $item->repostOf : $item" />
-        </ul>
+        <x-post
+          :post="$item->isRepost() && $item->content == null ? $item->repostOf : $item"
+          :show-engagement="false"
+          :show-replies="true"
+        />
       @endforeach
     </ol>
 
@@ -85,4 +87,5 @@
   <!-- Sidebar -->
   @include('partials.aside')
 </x-layout>
+
 
