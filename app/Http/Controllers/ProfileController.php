@@ -31,9 +31,11 @@ class ProfileController extends Controller
             ->where(fn($q) => $q
                 ->whereBelongsTo($profile, 'profile')
                 ->whereNull('parent_id')
+                ->withCount(['likes', 'reposts', 'replies'])
             )
             ->orWhereHas('replies', fn($q) => $q
                 ->whereBelongsTo($profile, 'profile')
+                ->withCount(['likes', 'reposts', 'replies'])
             )
             ->with([
                 'profile',

@@ -10,6 +10,7 @@ use Illuminate\View\Component;
 class Post extends Component
 {
     public PostModel $post;
+    public PostModel $original; // Everything else is unused now
     public bool $showEngagement = true;
     public bool $showReplies = false;
 
@@ -18,7 +19,10 @@ class Post extends Component
      */
     public function __construct(PostModel $post, bool $showEngagement = true, bool $showReplies = false)
     {
-        $this->post = $post;
+        // Others are unused now except for the original $post
+        $this->original = $post;
+        $this->post = $post->isRepost() && $post->content == null ? $post->repostOf : $post;
+
         $this->showEngagement = $showEngagement;
         $this->showReplies = $showReplies;
     }

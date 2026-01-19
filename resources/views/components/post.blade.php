@@ -44,7 +44,13 @@
           <div class="flex items-center gap-8">
             <!-- Like -->
             <div class="flex items-center gap-1">
-              <button aria-label="Like" class="hover:text-pxl">
+                <button
+                  aria-label="Like"
+                  @class([
+                    'text-pxl' => $post->has_liked
+                  ])
+                  class="hover:text-pxl"
+                >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-[17px]" viewBox="0 0 20 17">
                   <g fill="currentColor" clip-path="url(#a)">
                     <path
@@ -62,11 +68,22 @@
                   </defs>
                 </svg>
               </button>
-              <span class="text-sm">{{ $post->likes_count }}</span>
+              <span
+                @class([
+                  'text-pxl' => $post->has_liked
+                ])
+                class="text-sm"
+              >{{ $post->likes_count }}</span>
             </div>
             <!-- Comment -->
             <div class="flex items-center gap-1">
-              <button aria-label="Comment" class="hover:text-pxl">
+              <button
+                aria-label="Comment"
+                @class([
+                  'text-pxl' => $post->has_original
+                ])
+                class="hover:text-pxl"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-[17px]" viewBox="0 0 20 17">
                   <g fill="currentColor" clip-path="url(#a)">
                     <path d="M3.581 0h1.824v1.824H3.581z" />
@@ -86,11 +103,22 @@
                   </defs>
                 </svg>
               </button>
-              <span class="text-sm">{{ $post->replies_count }}</span>
+              <span
+                @class([
+                  'text-pxl' => $post->has_original
+                ])
+                class="text-sm"
+              >{{ $post->replies_count }}</span>
             </div>
             <!-- Re-post -->
             <div class="flex items-center gap-1">
-              <button aria-label="Re-post" class="hover:text-pxl">
+              <button
+                aria-label="Re-post"
+                @class([
+                  'text-pxl' => $post->has_reposted
+                ])
+                class="hover:text-pxl"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-[17px]" viewBox="0 0 20 17">
                   <path fill="currentColor" d="M1.429 3.857H0v1.429h1.429V3.857Z" />
                   <path fill="currentColor" d="M2.854 3.857H1.426v1.429h1.428V3.857Z" />
@@ -118,7 +146,12 @@
                     d="M15.714 5.286h-1.428v1.429h1.428V5.286Zm-1.428 0h-1.428v1.429h1.428V5.286Zm-1.43 0h-1.428v1.429h1.428V5.286Z" />
                 </svg>
               </button>
-              <span class="text-sm">{{ $post->reposts_count }}</span>
+              <span
+                @class([
+                  'text-pxl' => $post->has_reposted
+                ])
+                class="text-sm"
+              >{{ $post->reposts_count }}</span>
             </div>
           </div>
           <div class="flex items-center gap-3">
