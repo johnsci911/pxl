@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follow;
 use App\Models\Post;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -59,5 +61,14 @@ class ProfileController extends Controller
             ->get();
 
         return view('profiles.replies', compact('profile', 'posts'));
+    }
+
+    public function follow(Profile $profile)
+    {
+        $currentProfile = Auth::user()->profile;
+
+        $follow = Follow::createFollow($currentProfile, $profile);
+
+        return response()->json(compact('follow'));
     }
 }
